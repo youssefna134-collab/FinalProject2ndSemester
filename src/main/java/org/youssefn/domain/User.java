@@ -30,4 +30,6 @@ public abstract class User {
     public void returnItem(Item item) {
         borrowedItems.remove(item);
     }
+
+    public abstract int getBorrowLimit();
 }
