@@ -92,4 +92,11 @@ public class Library {
         return recursiveSearch(index + 1, title);
     }
 
+    public List<Item> streamSearch(String title) {
+
+        return items.stream()
+                .filter(item -> item.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .distinct()
+                .toList();
+    }
 }
