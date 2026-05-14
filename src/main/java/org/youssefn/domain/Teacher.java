@@ -1,5 +1,7 @@
 package org.youssefn.domain;
 
+import org.youssefn.Util.Constants;
+
 public class Teacher extends User {
 
     public Teacher(String name) {
@@ -8,6 +10,6 @@ public class Teacher extends User {
 
     @Override
     public int getBorrowLimit() {
-        return 10;
+        return Constants.MAX_ITEMS_TEACHER;
     }
 }
