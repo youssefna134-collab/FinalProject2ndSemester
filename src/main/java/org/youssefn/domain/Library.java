@@ -79,4 +79,17 @@ public class Library {
 
         return results;
     }
+
+    public Item recursiveSearch(int index, String title) {
+        if (index >= items.size()) {
+            return null;
+        }
+
+        if (items.get(index).getTitle().equalsIgnoreCase(title)) {
+            return items.get(index);
+        }
+
+        return recursiveSearch(index + 1, title);
+    }
+
 }
