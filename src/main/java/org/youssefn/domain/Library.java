@@ -61,4 +61,22 @@ public class Library {
 
         return results;
     }
+
+    public List<Item> searchByAuthor(String author) {
+        List<Item> results = new ArrayList<>();
+        Set<String> alreadyAdded = new HashSet<>();
+
+        for (Item item : items) {
+            if (item instanceof Book book) {
+                if (book.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+                    if (!alreadyAdded.contains(book.getTitle())) {
+                        results.add(book);
+                        alreadyAdded.add(book.getTitle());
+                    }
+                }
+            }
+        }
+
+        return results;
+    }
 }
