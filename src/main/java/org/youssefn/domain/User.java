@@ -11,9 +11,9 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 public abstract class User {
-    private String id;
-    private String name;
-    private List<Item> borrowedItems;
+    protected String id;
+    protected String name;
+    protected List<Item> borrowedItems;
 
     private static int nextId = 1;
 

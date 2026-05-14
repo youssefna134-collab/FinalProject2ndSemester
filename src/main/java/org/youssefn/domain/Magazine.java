@@ -12,6 +12,10 @@ public class Magazine extends Item {
     private String publisher;
 
     public Magazine(String title, int issueNumber, String publisher) {
+        if (issueNumber <= 0) {
+            throw new IllegalArgumentException("Issue number must be positive");
+        }
+
         super(title);
         this.issueNumber = issueNumber;
         this.publisher = publisher;

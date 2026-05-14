@@ -12,6 +12,10 @@ public class DVD extends Item {
     private int duration;
 
     public DVD(String title, String director, int duration) {
+        if (duration <= 0) {
+            throw new IllegalArgumentException("Duration must be positive");
+        }
+
         super(title);
         this.director = director;
         this.duration = duration;

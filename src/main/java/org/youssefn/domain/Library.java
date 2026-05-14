@@ -34,6 +34,18 @@ public class Library {
     }
 
     public void borrowItem(User user, Item item) {
+        if (item.getItemStatus() != ItemStatus.IN_STORE) {
+            throw new IllegalArgumentException("Item is not available");
+        }
+
+        if (user instanceof Student && !(item instanceof Book)) {
+            throw new IllegalArgumentException("Students can only borrow books");
+        }
+
+        if (user.getBorrowedItems().size() >= user.getBorrowLimit()) {
+            throw new IllegalArgumentException("Borrow limit reached");
+        }
+
         user.borrowItem(item);
         item.setItemStatus(ItemStatus.BORROWED);
     }
