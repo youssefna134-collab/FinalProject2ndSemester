@@ -43,4 +43,22 @@ public class Library {
         item.setItemStatus(ItemStatus.IN_STORE);
         returnedItems.push(item);
     }
+
+    public List<Item> searchByTitle(String title) {
+        List<Item> results = new ArrayList<>();
+        Set<String> alreadyAdded = new HashSet<>();
+
+        for (Item item : items) {
+
+            if (item.getTitle().toLowerCase().contains(title.toLowerCase())) {
+
+                if (!alreadyAdded.contains(item.getTitle())) {
+                    results.add(item);
+                    alreadyAdded.add(item.getTitle());
+                }
+            }
+        }
+
+        return results;
+    }
 }
