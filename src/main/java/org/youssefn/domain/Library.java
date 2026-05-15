@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 @Getter
@@ -110,5 +112,35 @@ public class Library {
                 .filter(item -> item.getTitle().toLowerCase().contains(title.toLowerCase()))
                 .distinct()
                 .toList();
+    }
+
+    public void exportItems(String path) {
+        try {
+            FileWriter writer = new FileWriter(path);
+
+            for (Item item : items) {
+                writer.write(item.toString() + "\n");
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Error exporting items");
+        }
+    }
+
+    public void exportUsers(String path) {
+        try {
+            FileWriter writer = new FileWriter(path);
+
+            for (User user : users) {
+                writer.write(user.toString() + "\n");
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Error exporting users");
+        }
     }
 }
