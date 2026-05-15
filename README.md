@@ -47,7 +47,9 @@ Admins can generate comprehensive reports using the `Reportable` interface. Thes
 
 ### 2. Data Backup
 To ensure data safety, Admins can trigger a **Backup** command. This writes the current state of all users and library 
-items back into the `users.csv` and `books.csv` files, saving any changes made during the session.<img width="500" height="300" alt="Screenshot 2026-05-15 013532" src="https://github.com/user-attachments/assets/24ba252c-1d22-4c01-aad8-1abf6f7ae021" />
+items back into the `users.csv` and `books.csv` files, saving any changes made during the session.
+
+<img width="500" height="300" alt="Screenshot 2026-05-15 013532" src="https://github.com/user-attachments/assets/24ba252c-1d22-4c01-aad8-1abf6f7ae021" />
 
 ### 3. Sorting
 Admins can view lists of users or items sorted by various criteria (ex: sorting users alphabetically by name or items by their title).
