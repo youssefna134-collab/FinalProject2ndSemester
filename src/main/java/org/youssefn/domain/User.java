@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -54,4 +55,12 @@ public abstract class User {
      * @return the borrow limit
      */
     public abstract int getBorrowLimit();
+
+    public class UserComparatorByName implements Comparator<User> {
+
+        @Override
+        public int compare(User o1, User o2) {
+            return o1.getName().compareToIgnoreCase(o2.getName());
+        }
+    }
 }
