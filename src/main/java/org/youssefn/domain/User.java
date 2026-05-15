@@ -23,13 +23,35 @@ public abstract class User {
         this.borrowedItems = new ArrayList<>();
     }
 
+    /**
+     * Adds item to the borrowed items list
+     * @param item the item input
+     */
     public void borrowItem(Item item) {
+        if (item == null) {
+            System.out.println("Item not found");
+            return;
+        }
+
         borrowedItems.add(item);
     }
 
+    /**
+     * Removes the item from the user
+     * @param item the item input
+     */
     public void returnItem(Item item) {
+        if (item == null) {
+            System.out.println("Item not found");
+            return;
+        }
+
         borrowedItems.remove(item);
     }
 
+    /**
+     * Gets the borrow limit depending on the user
+     * @return the borrow limit
+     */
     public abstract int getBorrowLimit();
 }

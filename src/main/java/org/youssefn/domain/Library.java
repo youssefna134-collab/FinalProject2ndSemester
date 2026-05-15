@@ -31,16 +31,29 @@ public class Library {
         this.itemMap = new HashMap<>();
     }
 
+    /**
+     * Adds an item and its title to the corresponding lists and maps the id to it
+     * @param item the item input
+     */
     public void addItem(Item item) {
         items.add(item);
         uniqueTitles.add(item.getTitle());
         itemMap.put(item.getId(), item);
     }
 
+    /**
+     * Adds a user to the user list
+     * @param user the user input
+     */
     public void addUser(User user) {
         users.add(user);
     }
 
+    /**
+     * Borrows an item form the library system
+     * @param user User that wishes to borrow an item
+     * @param item the item that the user wants to borrow
+     */
     public void borrowItem(User user, Item item) {
         if (item.getItemStatus() != ItemStatus.IN_STORE) {
             throw new IllegalArgumentException("Item is not available");
@@ -58,12 +71,22 @@ public class Library {
         item.setItemStatus(ItemStatus.BORROWED);
     }
 
+    /**
+     * Removes the item from the user
+     * @param user the user that wants to return the item
+     * @param item the item that the user wants to return
+     */
     public void returnItem(User user, Item item) {
         user.returnItem(item);
         item.setItemStatus(ItemStatus.IN_STORE);
         returnedItems.push(item);
     }
 
+    /**
+     * Search items by their titles
+     * @param title the title input
+     * @return the corresponding item
+     */
     public List<Item> searchByTitle(String title) {
         List<Item> results = new ArrayList<>();
         Set<String> alreadyAdded = new HashSet<>();
@@ -82,6 +105,11 @@ public class Library {
         return results;
     }
 
+    /**
+     * Searches an item by the author
+     * @param author the author input
+     * @return the corresponding item
+     */
     public List<Item> searchByAuthor(String author) {
         List<Item> results = new ArrayList<>();
         Set<String> alreadyAdded = new HashSet<>();
@@ -100,6 +128,12 @@ public class Library {
         return results;
     }
 
+    /**
+     * Searches for an item by the title recursively
+     * @param index the index input
+     * @param title the title input
+     * @return the corresponding item
+     */
     public Item recursiveSearch(int index, String title) {
         if (index >= items.size()) {
             return null;
@@ -112,6 +146,11 @@ public class Library {
         return recursiveSearch(index + 1, title);
     }
 
+    /**
+     * Searches for an item by their title while using stream
+     * @param title the title input
+     * @return the corresponding item
+     */
     public List<Item> streamSearch(String title) {
 
         return items.stream()
@@ -120,6 +159,10 @@ public class Library {
                 .toList();
     }
 
+    /**
+     * Exports items to the csv files
+     * @param path the path input
+     */
     public void exportItems(String path) {
         try {
             FileWriter writer = new FileWriter(path);
@@ -135,6 +178,10 @@ public class Library {
         }
     }
 
+    /**
+     * Exports users to the csv file
+     * @param path the path input
+     */
     public void exportUsers(String path) {
         try {
             FileWriter writer = new FileWriter(path);
@@ -150,7 +197,10 @@ public class Library {
         }
     }
 
-
+    /**
+     * Loads books from the csv file
+     * @param path the path input
+     */
     public void loadBooks(String path) {
         try {
             Scanner scanner = new Scanner(new File(path));
@@ -175,6 +225,10 @@ public class Library {
         }
     }
 
+    /**
+     * Loads users from the csv file
+     * @param path the path input
+     */
     public void loadUsers(String path) {
         try {
             Scanner scanner = new Scanner(new File(path));
