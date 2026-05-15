@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -33,6 +35,10 @@ public class Library {
         items.add(item);
         uniqueTitles.add(item.getTitle());
         itemMap.put(item.getId(), item);
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 
     public void borrowItem(User user, Item item) {
@@ -141,6 +147,64 @@ public class Library {
 
         } catch (IOException e) {
             System.out.println("Error exporting users");
+        }
+    }
+
+
+    public void loadBooks(String path) {
+        try {
+            Scanner scanner = new Scanner(new File(path));
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(",");
+
+                String isbn = data[1];
+                String title = data[2];
+                String author = data[3];
+                String genre = data[4];
+
+                Book book = new Book(title, isbn, author, genre);
+                this.addItem(book);
+            }
+
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Books file not found");
+        }
+    }
+
+    public void loadUsers(String path) {
+        try {
+            Scanner scanner = new Scanner(new File(path));
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(",");
+
+                String name = data[1];
+                String type = data[2];
+
+                switch (type) {
+                    case "Student":
+                        this.addUser(new Student(name));
+                        break;
+
+                    case "Teacher":
+                        this.addUser(new Teacher(name));
+                        break;
+
+                    case "Admin":
+                        this.addUser(new Admin(name));
+                        break;
+                }
+            }
+
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Users file not found");
         }
     }
 }
