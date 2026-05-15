@@ -56,7 +56,7 @@ public abstract class User {
      */
     public abstract int getBorrowLimit();
 
-    public class UserComparatorByName implements Comparator<User> {
+    public static class UserComparatorByName implements Comparator<User> {
 
         @Override
         public int compare(User o1, User o2) {
